@@ -69,6 +69,7 @@
     self.scrollView.pagingEnabled = YES;
     self.scrollView.delegate = self;
 }
+
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     NSLog(@"%d",decelerate);
@@ -79,12 +80,8 @@
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    NSLog(@"%f",scrollView.contentOffset.x);
-    NSLog(@"%f",scrollView.contentOffset.x / scrollView.bounds.size.width);
     _currentIndex += (scrollView.contentOffset.x / scrollView.bounds.size.width + 0.5  + self.iteamArray.count -1) ;
-    NSLog(@"%d",_currentIndex);
     _currentIndex %= self.iteamArray.count;
-    NSLog(@"%d",self.currentIndex);
     [self setupFrameWithCurrentIndex];
     [self.scrollView setContentOffset:CGPointMake([UIScreen mainScreen].bounds.size.width, 0)];
 }
